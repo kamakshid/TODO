@@ -2,10 +2,10 @@ module ResponseFormatter
 
 	def formatted_tasks(tasks)
 		if tasks.blank?
-			return json: {message: "No Tasks."}
+			return {message: "No Tasks."}
 		end
 
-		return tasks.map{ |task| task.attributes.slice("id", "created_at", "updated_at", "completed_at", "due_at", "name", "is_completed")
+		return tasks.map{ |task| task.attributes.slice("id", "created_at", "updated_at", "completed_at", "due_at", "name", "is_completed") }
 	end
 
 end
