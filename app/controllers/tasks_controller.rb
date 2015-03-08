@@ -9,18 +9,20 @@ class TasksController < ApplicationController
 			tasks = Task.where(is_completed: false)
 		elsif (params[:type] == 'completed')
 			tasks = Task.where(is_completed: true)
-		elsif (params[:type] == 'all')
+		elsif (params[:type] == 'all' || params[:type] == nil)
 			tasks = Task.all
 		else
 			render status: 400, json: {error: "Check request format."}
 		end			
-		
-		tasks.sort_by! {|task| task.created_at }
+	
+		if (!tasks.blank?)	
+			tasks = tasks.sort_by {|task| task.created_at }
+		end
 		render status: 200, json: {tasks: formatted_tasks(tasks)}
 	end
 
 	def show
-		task = Task.find(params[:task_id])
+		task = Task.find(params[:id])
 
 		if task
 			render status: 200, json: {task: formatted_tasks(task)}
