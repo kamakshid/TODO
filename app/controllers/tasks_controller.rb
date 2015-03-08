@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
-	
+
+	require "#{Rails.root}/lib/modules/response_formatter.rb"
 	include ResponseFormatter
 
 	def index
