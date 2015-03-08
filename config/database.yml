@@ -2,6 +2,6 @@ development:
   adapter: postgresql
   encoding: utf8
   reconnect: false
-  database: shout_to_do
+# database: shout_to_do
   pool: 5
   host: localhost 
